@@ -1,20 +1,22 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:spare_wallet/config/app_config.dart';
-import 'package:spare_wallet/widgets/custom_text_widget.dart';
+import 'package:spare_wallet/widgets/text/custom_text_widget.dart';
 
-class CustomButtonWidget extends StatelessWidget {
+class CustomBorderButton extends StatelessWidget {
+  final double borderRadius;
   final String text;
   final double width;
   final double height;
   final Function onTapHandler;
   final Color fontColor;
   final double fontSize;
+  final Color borderColor;
+  final int borderWidth;
   final FontWeight fontWeight;
-  final Color backgroundColor;
   String? type;
-  CustomButtonWidget({
+  CustomBorderButton({
     super.key,
     this.type,
     required this.text,
@@ -24,7 +26,9 @@ class CustomButtonWidget extends StatelessWidget {
     required this.fontSize,
     required this.fontColor,
     required this.fontWeight,
-    required this.backgroundColor,
+    required this.borderColor,
+    required this.borderWidth,
+    required this.borderRadius,
   });
 
   @override
@@ -40,8 +44,8 @@ class CustomButtonWidget extends StatelessWidget {
             ? EdgeInsets.only(right: AppLayout.getWidth(10))
             : EdgeInsets.all(0),
         decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: borderColor, width: 1),
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: Center(
           child: CustomTextWidget(

@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppStyles {
-  static Color bgPrimary = Color(0xFF407AFF);
-  static Color bgSecondary = Color(0xFF2C3988);
-  static Color bgGrayLight = Color(0xFF253341);
+  static Color bgRed = Color(0xFFFF6565);
+  static Color bgGray = Color(0xFF87898E);
+  static Color bgBlack = Colors.black87;
+  static Color bgPrimary = Color(0xFF2C3988);
+  static Color bgSecondary = Color(0xFF407AFF);
+  static Color bgGrayLight = Color(0xFFDADADA);
+  static Color bgGrayShade1 = Color(0xFFDADADA);
 }
 
 class AppLayout {

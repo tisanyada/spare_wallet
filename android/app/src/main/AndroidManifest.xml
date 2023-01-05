@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.spare_wallet">
    <application
-        android:label="spare_wallet"
+        android:label="Spare Wallet"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
