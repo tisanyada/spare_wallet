@@ -5,6 +5,7 @@ import 'package:spare_wallet/config/app_config.dart';
 import 'package:spare_wallet/screens/main/home_screen.dart';
 import 'package:spare_wallet/screens/main/messages_screen.dart';
 import 'package:spare_wallet/screens/main/profile_screen.dart';
+import 'package:spare_wallet/screens/main/send_popup_screen.dart';
 import 'package:spare_wallet/screens/main/wallet_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -34,6 +35,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
           backgroundColor: AppStyles.bgSecondary,
           onPressed: () {
             // Add your onPressed code here!
+            print('SEND BUTTON');
+
+            showModalBottomSheet(
+              context: context,
+              useRootNavigator: true,
+              backgroundColor: Colors.white.withOpacity(0),
+              builder: (BuildContext context) {
+                return SendPopupScreen(modalContext: context);
+              },
+            );
           },
           child: ImageIcon(
             AssetImage('assets/icons/icon__send.png'),

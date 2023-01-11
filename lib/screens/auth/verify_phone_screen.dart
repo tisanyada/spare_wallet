@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:spare_wallet/config/app_config.dart';
-import 'package:spare_wallet/screens/public/verify_processing.dart';
+import 'package:spare_wallet/screens/auth/verify_success_screen.dart';
+import 'package:spare_wallet/screens/public/loading_animation.dart';
 import 'package:spare_wallet/widgets/buttons/circular_back_button.dart';
 import 'package:spare_wallet/widgets/buttons/custom_button.dart';
 import 'package:spare_wallet/widgets/text/custom_text_widget.dart';
@@ -17,6 +18,15 @@ class VerifyPhoneScreen extends StatefulWidget {
 }
 
 class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
+  void runTimeout() async {
+    await Future.delayed(const Duration(seconds: 5));
+    Get.to(
+      transition: Transition.fade,
+      duration: const Duration(milliseconds: 500),
+      () => const VerifySuccessScreen(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -198,7 +208,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                   Get.to(
                     transition: Transition.zoom,
                     duration: const Duration(milliseconds: 500),
-                    () => VerifyProcessing(),
+                    () => LoadingAnimation(timeoutFunction: runTimeout),
                   );
                 },
                 fontSize: 12.0.sp,

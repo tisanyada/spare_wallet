@@ -11,6 +11,7 @@ class AppStyles {
   static Color bgSecondary = Color(0xFF407AFF);
   static Color bgGrayLight = Color(0xFFDADADA);
   static Color bgGrayShade1 = Color(0xFFDADADA);
+  static Color bgGreenLight = Color(0xFF91F2C5);
 }
 
 class AppLayout {

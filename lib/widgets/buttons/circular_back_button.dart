@@ -12,7 +12,7 @@ class CircularBackButton extends StatelessWidget {
         Get.back();
       },
       child: CircleAvatar(
-        radius: 22,
+        radius: 15,
         backgroundColor: AppStyles.bgPrimary.withOpacity(0.1),
         child: Icon(
           Icons.arrow_back_ios_new_rounded,

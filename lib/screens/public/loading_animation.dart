@@ -3,18 +3,20 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:spare_wallet/config/app_config.dart';
-import 'package:spare_wallet/config/custom_colors.dart';
 import 'package:spare_wallet/screens/auth/verify_success_screen.dart';
 
-class VerifyProcessing extends StatefulWidget {
-  const VerifyProcessing({super.key});
+class LoadingAnimation extends StatefulWidget {
+  final Function timeoutFunction;
+  const LoadingAnimation({
+    super.key,
+    required this.timeoutFunction,
+  });
 
   @override
-  State<VerifyProcessing> createState() => _VerifyProcessingState();
+  State<LoadingAnimation> createState() => _LoadingAnimationState();
 }
 
-class _VerifyProcessingState extends State<VerifyProcessing> {
+class _LoadingAnimationState extends State<LoadingAnimation> {
   void runTimeout() async {
     await Future.delayed(const Duration(seconds: 5));
     Get.to(
@@ -28,7 +30,7 @@ class _VerifyProcessingState extends State<VerifyProcessing> {
   void initState() {
     super.initState();
 
-    runTimeout();
+    widget.timeoutFunction();
   }
 
   @override

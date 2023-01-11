@@ -155,6 +155,7 @@ class _SigninScreenState extends State<SigninScreen> {
                 height: 6.0.hp,
                 onTapHandler: () {
                   // CALL LOGIN FUNCTION
+                  Get.toNamed('/dashboard');
                 },
                 fontSize: 12.0.sp,
                 borderRadius: 50,

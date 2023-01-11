@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:spare_wallet/screens/main/dashboard.dart';
 import 'package:spare_wallet/screens/public/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,7 +16,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Get.to(
       transition: Transition.fade,
       duration: const Duration(milliseconds: 500),
-      () => const OnboardingScreen(),
+      () => const DashboardScreen(),
+      // () => const OnboardingScreen(),
     );
   }
 
