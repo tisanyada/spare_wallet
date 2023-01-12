@@ -7,7 +7,6 @@ import 'package:spare_wallet/config/app_config.dart';
 import 'package:spare_wallet/screens/auth/signin_screen.dart';
 import 'package:spare_wallet/screens/auth/verify_phone_screen.dart';
 import 'package:spare_wallet/widgets/buttons/circular_back_button.dart';
-import 'package:spare_wallet/widgets/buttons/custom_border_button.dart';
 import 'package:spare_wallet/widgets/buttons/custom_button.dart';
 import 'package:spare_wallet/widgets/buttons/custom_country_dropdown_button.dart';
 import 'package:spare_wallet/widgets/text/custom_formpassword_field.dart';
@@ -30,13 +29,6 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController countryController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-
-    authStorage.write('current_screen', 'AUTH');
-  }
 
   @override
   Widget build(BuildContext context) {

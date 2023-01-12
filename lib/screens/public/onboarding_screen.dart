@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:spare_wallet/config/app_config.dart';
 import 'package:spare_wallet/data/index.dart';
 import 'package:spare_wallet/screens/auth/signin_screen.dart';
@@ -18,15 +17,7 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   int currentPage = 0;
-  final authStorage = GetStorage();
   PageController pageController = PageController();
-
-  @override
-  void initState() {
-    super.initState();
-
-    authStorage.write('current_screen', 'ONBOARDING');
-  }
 
   @override
   Widget build(BuildContext context) {

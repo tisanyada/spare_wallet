@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:spare_wallet/screens/main/dashboard.dart';
 import 'package:spare_wallet/screens/public/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,8 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Get.to(
       transition: Transition.fade,
       duration: const Duration(milliseconds: 500),
-      () => const DashboardScreen(),
-      // () => const OnboardingScreen(),
+      () => const OnboardingScreen(),
     );
   }
 
@@ -30,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    runTimeout();
+    // runTimeout();
     
     return Scaffold(
       body: Center(

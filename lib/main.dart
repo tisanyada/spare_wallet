@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:spare_wallet/archive/root_repository.dart';
 import 'package:spare_wallet/config/custom_colors.dart';
 import 'package:spare_wallet/screens/auth/signin_screen.dart';
 import 'package:spare_wallet/screens/auth/signup_screen.dart';
@@ -11,7 +13,17 @@ import 'package:spare_wallet/screens/main/pages/bills_services_screen.dart';
 import 'package:spare_wallet/screens/public/onboarding_screen.dart';
 import 'package:spare_wallet/screens/public/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
+
+  SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ],
+  );
+
   runApp(const MyApp());
 }
 
@@ -24,6 +36,14 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final authStorage = GetStorage();
+  final RootArchive rootArchive = Get.put(RootArchive());
+
+  @override
+  void initState() {
+    super.initState();
+
+    rootArchive.initializeArchives();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +54,8 @@ class _MyAppState extends State<MyApp> {
         fontFamily: 'Inter',
       ),
       debugShowCheckedModeBanner: false,
-      home: authStorage.read('current_screen') == 'ONBOARDING'
-          ? OnboardingScreen()
-          : authStorage.read('current_screen') == 'AUTH'
-              ? SigninScreen()
-              : SplashScreen(),
+      home:
+          authStorage.read('USER') != null ? DashboardScreen() : SplashScreen(),
       getPages: [
         GetPage(name: '/', page: () => SplashScreen()),
         GetPage(name: '/onboarding', page: () => OnboardingScreen()),

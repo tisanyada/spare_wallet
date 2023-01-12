@@ -1,11 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:spare_wallet/config/app_config.dart';
 import 'package:spare_wallet/screens/auth/signup_screen.dart';
+import 'package:spare_wallet/services/auth_services.dart';
 import 'package:spare_wallet/widgets/buttons/circular_back_button.dart';
 import 'package:spare_wallet/widgets/buttons/custom_border_button.dart';
 import 'package:spare_wallet/widgets/buttons/custom_button.dart';
@@ -23,47 +22,15 @@ class SigninScreen extends StatefulWidget {
 class _SigninScreenState extends State<SigninScreen> {
   bool showPassword = true;
   bool rememberMe = false;
-  final authStorage = GetStorage();
+  final AuthServices authServices = Get.find();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-
-    authStorage.write('current_screen', 'AUTH');
-  }
-
-  @override
   Widget build(BuildContext context) {
-    // final screenWidth = MediaQuery.of(context).size.width;
-    // final screenHeight = MediaQuery.of(context).size.height;
+    authServices.login();
 
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white.withOpacity(0),
-      //   shadowColor: Colors.white.withOpacity(0),
-      //   leading: IconButton(
-      //     style: ButtonStyle(
-      //       backgroundColor: MaterialStateProperty.resolveWith<Color>(
-      //         (Set<MaterialState> states) {
-      //           if (states.contains(MaterialState.pressed)) {
-      //             return Colors.red;
-      //           }
-      //           if (states.contains(MaterialState.disabled)) {
-      //             return Colors.grey;
-      //           }
-      //           return Colors.blue;
-      //         },
-      //       ),
-      //     ),
-      //     onPressed: () {},
-      //     icon: Icon(
-      //       Icons.arrow_back,
-      //       color: Colors.black,
-      //     ),
-      //   ),
-      // ),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(
@@ -155,7 +122,8 @@ class _SigninScreenState extends State<SigninScreen> {
                 height: 6.0.hp,
                 onTapHandler: () {
                   // CALL LOGIN FUNCTION
-                  Get.toNamed('/dashboard');
+                  // Get.toNamed('/dashboard');
+                  authServices.getMe();
                 },
                 fontSize: 12.0.sp,
                 borderRadius: 50,

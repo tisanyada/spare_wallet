@@ -41,6 +41,10 @@ dependencies:
   font_awesome_flutter: ^10.3.0
   lottie: ^2.1.0
   fl_chart: ^0.55.2
+  dio: ^4.0.6
+  jwt_decoder: ^2.0.1
+
+
 flutter_icons:
   android: true
   ios: true
