@@ -5,14 +5,21 @@ import 'package:spare_wallet/config/app_config.dart';
 import 'package:spare_wallet/data/index.dart';
 
 class CustomCountryDropdownButton extends StatefulWidget {
-  const CustomCountryDropdownButton({super.key});
+  final int country;
+  final Function onChangeHandler;
+  const CustomCountryDropdownButton({
+    super.key,
+    required this.country,
+    required this.onChangeHandler,
+  });
 
   @override
   State<CustomCountryDropdownButton> createState() =>
       _CustomCountryDropdownButtonState();
 }
 
-class _CustomCountryDropdownButtonState extends State<CustomCountryDropdownButton> {
+class _CustomCountryDropdownButtonState
+    extends State<CustomCountryDropdownButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,7 +50,7 @@ class _CustomCountryDropdownButtonState extends State<CustomCountryDropdownButto
                 fontSize: 12.0.sp,
               ),
               isExpanded: true,
-              value: countries[0],
+              value: countries[widget.country],
               icon: Icon(Icons.keyboard_arrow_down),
               items: countries.map((item) {
                 return DropdownMenuItem<String>(
@@ -53,6 +60,9 @@ class _CustomCountryDropdownButtonState extends State<CustomCountryDropdownButto
               }).toList(),
               onChanged: (value) {
                 // swidget.handleChange!(int.parse(value.toString()));
+                debugPrint('[COUNTRY BTN]:: ${value.runtimeType}');
+                int index = countries.indexWhere((element) => element == value);
+                widget.onChangeHandler(index);
               },
             ),
           ),

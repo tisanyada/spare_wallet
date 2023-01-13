@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spare_wallet/config/app_config.dart';
-import 'package:spare_wallet/screens/main/dashboard.dart';
+import 'package:spare_wallet/screens/auth/signin_screen.dart';
 import 'package:spare_wallet/widgets/text/custom_text_widget.dart';
 
 class VerifySuccessScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _VerifySuccessScreenState extends State<VerifySuccessScreen> {
     Get.to(
       transition: Transition.fade,
       duration: const Duration(milliseconds: 500),
-      () => const DashboardScreen(),
+      () => const SigninScreen(),
     );
   }
 

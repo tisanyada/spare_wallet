@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:spare_wallet/archive/user_repository.dart';
 import 'package:spare_wallet/config/app_config.dart';
 import 'package:spare_wallet/data/index.dart';
-import 'package:spare_wallet/widgets/buttons/circular_back_button.dart';
+import 'package:spare_wallet/services/user_services.dart';
 import 'package:spare_wallet/widgets/cards/transaction_card.dart';
 import 'package:spare_wallet/widgets/cards/wallet_atm_card.dart';
 import 'package:spare_wallet/widgets/text/custom_text_widget.dart';
@@ -20,6 +20,15 @@ class WalletScreen extends StatefulWidget {
 
 class _WalletScreenState extends State<WalletScreen> {
   var currentButton = 'Trending'.obs;
+  final UserServices userServices = Get.find();
+  final UserRepository userRepository = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+
+    userServices.fetchWalletDataController();
+  }
 
   @override
   Widget build(BuildContext context) {

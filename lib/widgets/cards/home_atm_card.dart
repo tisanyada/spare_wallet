@@ -5,7 +5,13 @@ import 'package:spare_wallet/config/app_config.dart';
 import 'package:spare_wallet/widgets/text/custom_text_widget.dart';
 
 class HomeAtmCard extends StatelessWidget {
-  const HomeAtmCard({super.key});
+  final String balance;
+  final String walletNumber;
+  const HomeAtmCard({
+    super.key,
+    required this.balance,
+    required this.walletNumber,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +47,7 @@ class HomeAtmCard extends StatelessWidget {
                   Row(
                     children: [
                       CustomTextWidget(
-                        text: '\$ 5,760.19',
+                        text: '\$ $balance',
                         color: Colors.white,
                         size: 20.0.sp,
                         weight: FontWeight.bold,
@@ -90,7 +96,7 @@ class HomeAtmCard extends StatelessWidget {
                           ),
                         ),
                         CustomTextWidget(
-                          text: '4552',
+                          text: walletNumber,
                           size: 12.0.sp,
                           weight: FontWeight.bold,
                           color: AppStyles.bgSecondary,

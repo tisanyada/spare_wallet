@@ -1,7 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:spare_wallet/archive/user_repository.dart';
 import 'package:spare_wallet/config/app_config.dart';
+import 'package:spare_wallet/models/user_model.dart';
+import 'package:spare_wallet/screens/auth/signin_screen.dart';
 import 'package:spare_wallet/screens/main/home_screen.dart';
 import 'package:spare_wallet/screens/main/messages_screen.dart';
 import 'package:spare_wallet/screens/main/profile_screen.dart';
@@ -17,6 +22,30 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int currentPage = 0;
+  final authStorage = GetStorage();
+  final UserRepository userRepository = Get.find();
+
+  void initializeUser() async {
+    if (userRepository.userData.value.avatar == null) {
+      userRepository.userData.value =
+          UserModel.fromJson(await authStorage.read('USER'));
+    }
+
+    if (userRepository.userData.value.isVerified == false) {
+      Get.to(
+        transition: Transition.rightToLeftWithFade,
+        duration: const Duration(milliseconds: 5000),
+        () => SigninScreen(),
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    initializeUser();
+  }
 
   List screens = [
     HomeScreen(),

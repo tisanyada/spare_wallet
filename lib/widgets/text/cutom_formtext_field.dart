@@ -7,10 +7,12 @@ class CustomFormTextField extends StatelessWidget {
   final String hintText;
   ImageIcon? prefixIcon;
   TextEditingController? controller;
+  TextInputType? keyboardType;
   CustomFormTextField({
     super.key,
     this.prefixIcon,
     this.controller,
+    this.keyboardType,
     required this.hintText,
   });
 
@@ -28,7 +30,7 @@ class CustomFormTextField extends StatelessWidget {
       child: TextFormField(
         controller: controller ?? controller,
         textAlignVertical: TextAlignVertical.center,
-        keyboardType: TextInputType.multiline,
+        keyboardType: keyboardType != null ? keyboardType: TextInputType.multiline,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
           border: InputBorder.none,
