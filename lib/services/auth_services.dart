@@ -61,7 +61,10 @@ class AuthServices extends GetxController {
       if (error is DioError) {
         authLoading.value = false;
         authRequestStatus.value = 'FAILED';
-        authRequestError.value = error.response!.data['message'];
+        debugPrint('${error.response!.data}');
+        if (error.response!.data['message'] != null) {
+          authRequestError.value = error.response!.data['message'];
+        }
         debugPrint('[SIGNIN CATCH ERROR] ${error.response!.data}');
       }
     }
